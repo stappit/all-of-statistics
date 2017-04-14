@@ -2,9 +2,10 @@ import math
 from collections import namedtuple
 
 
-class ECDF(object):
+CI = namedtuple('CI', ('lower', 'upper'))
 
-    _ci = namedtuple('CI', ('lower', 'upper'))
+
+class ECDF(object):
 
     def __init__(self, obs):
         self.observations = obs
@@ -21,4 +22,4 @@ class ECDF(object):
         y = self(x)
         l = max(y - e, 0)
         u = min(y + e, 1)
-        return self._ci(l, u)
+        return CI(l, u)
